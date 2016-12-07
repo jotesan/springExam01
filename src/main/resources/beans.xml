@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="general" class="org.cuatrovientos.spring.exam01.joseba.Commander">
+		<constructor-arg name="name" value="Grievous" />
+		<constructor-arg name="race" value="Kaleesh" />
+	</bean>
+
+	<bean id="commander1" class="org.cuatrovientos.spring.exam01.joseba.Commander">
+		<constructor-arg name="name" value="Darth Maul" />
+		<constructor-arg name="race" value="Zabrak" />
+	</bean>
+
+	<bean id="commander2" class="org.cuatrovientos.spring.exam01.joseba.Commander">
+		<constructor-arg name="name" value="Conde Dooku" />
+		<constructor-arg name="race" value="Human" />
+	</bean>
+
+	<bean id="commander3" class="org.cuatrovientos.spring.exam01.joseba.Commander">
+		<constructor-arg name="name" value="Darth Vader" />
+		<constructor-arg name="race" value="Cyborg" />
+	</bean>
+
+
+	<bean id="ship1" class="org.cuatrovientos.spring.exam01.joseba.Ship"
+		p:name="Scimitar" p:type="Transport" p:captain-ref="commander1" />
+
+	<bean id="ship2" class="org.cuatrovientos.spring.exam01.joseba.Ship"
+		p:name="Solar Sailer" p:type="Yacht" p:captain-ref="commander2" />
+
+	<bean id="ship3" class="org.cuatrovientos.spring.exam01.joseba.Ship"
+		p:name="TIE Advanced x1" p:type="Starfighter" p:captain-ref="commander3" />
+
+
+	<bean id="theFleet" class="org.cuatrovientos.spring.exam01.joseba.Fleet" autowire="byName">
+		<property name="name" value="Sith Navy" />
+		<property name="starships">
+			<set>
+				<ref bean="ship1" />
+				<ref bean="ship2" />
+				<ref bean="ship3" />
+			</set>
+		</property>
+	</bean>
+</beans>
